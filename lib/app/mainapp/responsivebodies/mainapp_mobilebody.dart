@@ -30,38 +30,47 @@ class _MainAppMobileBodyState extends State<MainAppMobileBody> {
       drawer: Drawer(
         child: CustomDrawer(),
       ),
-      body: Container(
-        height: double.maxFinite,
-        width: double.maxFinite,
-        child: ListView.builder(
-          itemCount: color1.length,
-          itemBuilder: (context, index) {
-            return AnimatedContainer(
-              duration: Duration(seconds: 5),
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.all(16),
-              height: 120,
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              curve: Curves.fastOutSlowIn,
-              child: Row(
-                children: [
-                  Text("data  ${index}"),
-                  Spacer(),
-                  Container(
-                    width: 100,
-                    height: 100,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: double.maxFinite,
+              child: ListView.builder(
+                itemCount: color1.length,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                // physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return AnimatedContainer(
+                    duration: Duration(seconds: 5),
+                    padding: EdgeInsets.all(16),
+                    margin: EdgeInsets.all(16),
+                    height: 120,
                     decoration: BoxDecoration(
-                      color: color1[index],
+                      color: Colors.black.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                  )
-                ],
+                    curve: Curves.fastOutSlowIn,
+                    child: Row(
+                      children: [
+                        Text("data  ${index}"),
+                        Spacer(),
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: color1[index],
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );
